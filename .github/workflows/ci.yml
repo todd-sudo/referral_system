@@ -29,9 +29,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
-
-      - name: Open Project
-        run: cd /home/todd/referral_system/
+          script: |
+            cd referral_system/
 
   deploy:
     runs-on: ubuntu-latest
