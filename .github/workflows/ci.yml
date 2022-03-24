@@ -31,7 +31,7 @@ jobs:
           key: ${{ secrets.SSHKEY }}
 
       - name: Open Project
-        uses: cd referral_system/
+        run: cd referral_system/
 
   deploy:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Down Containers
-        uses: ./scripts/down_prod.sh
+        run: ./scripts/down_prod.sh
 
       - name: Git pull
         run: git pull
@@ -51,6 +51,6 @@ jobs:
         run: ./scripts/build_prod.sh
 
       - name: Start Project
-        uses: ./scripts/up_prod.sh
+        run: ./scripts/up_prod.sh
 
 
