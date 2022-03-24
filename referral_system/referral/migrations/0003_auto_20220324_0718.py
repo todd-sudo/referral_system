@@ -5,10 +5,11 @@ from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 
 def create_check_tasks_task(apps, schema_editor):
-    """ Создает таску, для проверки не актуальный тасок
+    """ Создает таску, для проверки не актуальных тасок
+        Каждые 2 минуты она будет чистить не используемые таски
     """
     schedule, created = IntervalSchedule.objects.get_or_create(
-        every=1,
+        every=2,
         period=IntervalSchedule.MINUTES,
     )
     PeriodicTask.objects.create(
