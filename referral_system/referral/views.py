@@ -9,7 +9,6 @@ from rest_framework.generics import (
 )
 from rest_framework.response import Response
 from rest_framework import status, permissions, parsers
-from drf_spectacular.utils import extend_schema
 
 from .serializers import (
     ActivateInviteCodeSerializer,
