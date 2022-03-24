@@ -58,7 +58,7 @@ services:
     image: referral_system_production_celerybeat
     command: /start-celerybeat
 
-  flower:
-    <<: *django
-    image: referral_system_production_flower
-    command: /start-flower
+#  flower:
+#    <<: *django
+#    image: referral_system_production_flower
+#    command: /start-flower
