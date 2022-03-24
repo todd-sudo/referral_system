@@ -31,7 +31,7 @@ jobs:
           key: ${{ secrets.SSHKEY }}
 
       - name: Open Project
-        run: cd referral_system/
+        run: cd /home/todd/referral_system/
 
   deploy:
     runs-on: ubuntu-latest
