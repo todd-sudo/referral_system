@@ -8,7 +8,8 @@ from rest_framework.generics import (
     RetrieveAPIView
 )
 from rest_framework.response import Response
-from rest_framework import status, permissions
+from rest_framework import status, permissions, parsers
+from drf_spectacular.utils import extend_schema
 
 from .serializers import (
     ActivateInviteCodeSerializer,
@@ -17,15 +18,20 @@ from .serializers import (
     SendSMSCodeSerializer,
     AuthUserSerializer,
 )
-from .models import ReferralUser, SMSCode
-from .utils import create_task_message_send, utc_to_local, local_tz
+from .models import ReferralUser
+from .utils import create_task_message_send, local_tz
 
 
 class ActivateInviteCodeView(CreateAPIView):
     """ Активация инвайт кода
+
+    create:
+
+        invite_code: Инвайт код
     """
     serializer_class = ActivateInviteCodeSerializer
     permission_classes = [permissions.AllowAny]
+    parser_classes = (parsers.MultiPartParser, parsers.JSONParser,)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -34,11 +40,12 @@ class ActivateInviteCodeView(CreateAPIView):
 
         invite_code = dict(serializer.data).get("invite_code")
         try:
-            me = ReferralUser.objects.get(phone=request.META.get('HTTP_PHONE'))
+            # me = ReferralUser.objects.get(phone=request.META.get('HTTP_PHONE'))
+            me = ReferralUser.objects.get(phone=request.session["phone"])
         except ReferralUser.DoesNotExist:
             return Response(
                 {"detail": "Unauthorized", "error": "Проверьте данные"},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_401_UNAUTHORIZED
             )
         if me.parent is not None:
             return Response(
@@ -66,21 +73,27 @@ class ActivateInviteCodeView(CreateAPIView):
 
 class ProfileView(RetrieveAPIView):
     """ Профиль пользователя
+
+    retrieve:
+
+        id: ID пользователя
     """
     queryset = ReferralUser.objects.select_related("parent")
     serializer_class = ReferralUserProfileSerializer
     permission_classes = [permissions.AllowAny]
     lookup_field = "id"
+    parser_classes = (parsers.MultiPartParser, parsers.JSONParser,)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
 
-        current_user_phone = request.META.get('HTTP_PHONE')
+        # current_user_phone = request.META.get('HTTP_PHONE')
+        current_user_phone = request.session["phone"]
         if current_user_phone == instance.phone:
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(
-            {"detail": "Unauthorized"}, status=status.HTTP_400_BAD_REQUEST
+            {"detail": "Unauthorized"}, status=status.HTTP_401_UNAUTHORIZED
         )
 
 
@@ -89,6 +102,7 @@ class SendCodeSMSView(CreateAPIView):
     """
     serializer_class = SendSMSCodeSerializer
     queryset = ReferralUser.objects.all()
+    parser_classes = (parsers.MultiPartParser,)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -127,6 +141,7 @@ class ActivateSMSCode(CreateAPIView):
     """ Активация SMS кода, авторизация и добавление пользователя в БД
     """
     serializer_class = AuthUserSerializer
+    parser_classes = (parsers.MultiPartParser, parsers.JSONParser,)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
