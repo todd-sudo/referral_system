@@ -20,7 +20,6 @@ entryPoints:
 
 certificatesResolvers:
   letsencrypt:
-    # https://docs.traefik.io/master/https/acme/#lets-encrypt
     acme:
       email: "todd.develop@gmail.com"
       storage: /etc/traefik/acme/acme.json
