@@ -12,7 +12,7 @@ if settings.DEBUG:
 else:
     router = SimpleRouter()
 
-router.register("users", UserViewSet)
+# router.register("users", UserViewSet)
 
 schema_view = get_schema_view(
    openapi.Info(

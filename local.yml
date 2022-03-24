@@ -36,22 +36,22 @@ services:
     env_file:
       - ./.envs/.local/.postgres
 
-  docs:
-    image: referral_system_local_docs
-    container_name: referral_system_local_docs
-#    platform: linux/x86_64
-    build:
-      context: .
-      dockerfile: ./compose/local/docs/Dockerfile
-    env_file:
-      - ./.envs/.local/.django
-    volumes:
-      - ./docs:/docs:z
-      - ./config:/app/config:z
-      - ./referral_system:/app/referral_system:z
-    ports:
-      - "9000:9000"
-    command: /start-docs
+#  docs:
+#    image: referral_system_local_docs
+#    container_name: referral_system_local_docs
+##    platform: linux/x86_64
+#    build:
+#      context: .
+#      dockerfile: ./compose/local/docs/Dockerfile
+#    env_file:
+#      - ./.envs/.local/.django
+#    volumes:
+#      - ./docs:/docs:z
+#      - ./config:/app/config:z
+#      - ./referral_system:/app/referral_system:z
+#    ports:
+#      - "9000:9000"
+#    command: /start-docs
 
   redis:
     image: redis:6
