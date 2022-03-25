@@ -18,8 +18,8 @@ License: MIT
 1. Swagger: https://metrograddiplomtodd.ru/api/docs/
 2. Redoc: https://metrograddiplomtodd.ru/api/redoc/
 
-#### Endpoints:
-1. [POST] Авторизация пользователя
+### Endpoints:
+1. #### [POST] Авторизация пользователя
     ``` bash
     https://metrograddiplomtodd.ru/api/referral/login-sms/
     ```
@@ -41,7 +41,7 @@ License: MIT
     СМС код приходит в ответе на запрос, БЕЗ ЗАДЕРЖКИ(в тестовых целях).
 
 
-2. [POST] Подтверждение SMS кода
+2. #### [POST] Подтверждение SMS кода
     ```bash
     https://metrograddiplomtodd.ru/api/referral/sms-code/
     ```
@@ -53,10 +53,32 @@ License: MIT
     ```
    * Response:
    ```json
-    
+    {
+      "phone": "213213",
+      "parent": null,
+      "invite_code": "ucc5qe",
+      "childs": [],
+      "id": 2
+    }
    ```
 
 
+3. #### [GET] Профиль пользователя
+    ```bash
+   https://metrograddiplomtodd.ru/api/referral/profile/2/
+    ```
+   * Response:
+   ```json
+     {
+      "phone": "213213",
+      "parent": null,
+      "invite_code": "ucc5qe",
+      "childs": [],
+      "id": 2
+    }
+   ```
+   - `parent` - номер телефона пользователя, инвайт код которого активировал текущий пользователь
+   - `childs` - номера телефонов пользователей, которые активировали инвайт код текущего пользователя
 <br>
 
 ## Local Docs

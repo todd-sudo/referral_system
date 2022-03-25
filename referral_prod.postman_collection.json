@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "0236a3f6-f203-48af-89f7-a329ed3633ed",
+		"name": "referral prod",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Activate invite code",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "phone",
+						"value": "123123123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"invite_code\": \"ewq123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://metrograddiplomtodd.ru/api/referral/activate-invite/",
+					"protocol": "https",
+					"host": [
+						"metrograddiplomtodd",
+						"ru"
+					],
+					"path": [
+						"api",
+						"referral",
+						"activate-invite",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "phone",
+						"value": "623523423",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://metrograddiplomtodd.ru/api/referral/profile/2/",
+					"protocol": "https",
+					"host": [
+						"metrograddiplomtodd",
+						"ru"
+					],
+					"path": [
+						"api",
+						"referral",
+						"profile",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login SMS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\": \"87654321\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://metrograddiplomtodd.ru/api/referral/login-sms/",
+					"protocol": "https",
+					"host": [
+						"metrograddiplomtodd",
+						"ru"
+					],
+					"path": [
+						"api",
+						"referral",
+						"login-sms",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SMS code",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\": 4648\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://metrograddiplomtodd.ru/api/referral/sms-code/",
+					"protocol": "https",
+					"host": [
+						"metrograddiplomtodd",
+						"ru"
+					],
+					"path": [
+						"api",
+						"referral",
+						"sms-code",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

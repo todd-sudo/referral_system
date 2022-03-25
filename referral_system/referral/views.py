@@ -88,7 +88,12 @@ class ProfileView(RetrieveAPIView):
         serializer = self.get_serializer(instance)
 
         # current_user_phone = request.META.get('HTTP_PHONE')
-        current_user_phone = request.session["phone"]
+        try:
+            current_user_phone = request.session["phone"]
+        except KeyError:
+            return Response(
+                {"detail": "Unauthorized"}, status=status.HTTP_401_UNAUTHORIZED
+            )
         if current_user_phone == instance.phone:
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(
@@ -102,12 +107,14 @@ class LoginSendCodeSMSView(CreateAPIView):
     serializer_class = SendSMSCodeSerializer
     queryset = ReferralUser.objects.all()
     parser_classes = (parsers.MultiPartParser, parsers.JSONParser)
+    permission_classes = [permissions.AllowAny]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=False)
         headers = self.get_success_headers(serializer.data)
         phone = dict(serializer.data).get("phone")
+        print(phone)
         code = random.randint(1000, 9999)
         request.session["phone"] = phone
         request.session["code"] = code
@@ -141,6 +148,7 @@ class ActivateSMSCode(CreateAPIView):
     """
     serializer_class = AuthUserSerializer
     parser_classes = (parsers.MultiPartParser, parsers.JSONParser,)
+    permission_classes = [permissions.AllowAny]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
