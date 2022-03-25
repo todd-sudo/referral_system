@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Deploy to Reg.ru droplet via SSH action
+      - name: Connect SSH server
         uses: appleboy/ssh-action@v0.1.3
         with:
           host: ${{ secrets.HOST }}
@@ -45,14 +45,17 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v3
 
+      - name: PWD
+        run: pwd
+
       - name: Down Containers
         run: ./scripts/down_prod.sh
 
-      - name: Build Project
-        run: ./scripts/build_prod.sh
+#      - name: Build Project
+#        run: ./scripts/build_prod.sh
 
-      - name: Migration
-        run: ./scripts/migrate_prod.sh
+#      - name: Migration
+#        run: ./scripts/migrate_prod.sh
 
       - name: Start Project
         run: ./scripts/up_prod.sh
