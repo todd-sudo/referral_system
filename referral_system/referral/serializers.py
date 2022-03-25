@@ -45,6 +45,7 @@ class ReferralUserProfileSerializer(serializers.ModelSerializer):
             "parent",
             "invite_code",
             "childs",
+            "id",
         )
 
 
@@ -63,7 +64,7 @@ class SendSMSCodeSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = ReferralUser
-        fields = ["phone", "id"]
+        fields = ["phone"]
 
 
 class AuthUserSerializer(serializers.ModelSerializer):
