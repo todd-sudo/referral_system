@@ -63,7 +63,7 @@ class SendSMSCodeSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = ReferralUser
-        fields = ["phone"]
+        fields = ["phone", "id"]
 
 
 class AuthUserSerializer(serializers.ModelSerializer):

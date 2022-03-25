@@ -20,19 +20,43 @@ License: MIT
 
 #### Endpoints:
 1. [POST] Авторизация пользователя
-    ```bash
-    [POST] https://metrograddiplomtodd.ru/api/referral/login-sms/
+    ``` bash
+    https://metrograddiplomtodd.ru/api/referral/login-sms/
     ```
    * Request body:
-   ```bash
+   ``` json
     {
-      "phone": 12345678910
+      "phone": 213213
+    }
+   ```
+   * Response:
+   ``` json
+    {
+      "phone": "213213",
+      "sms_code": 8164
     }
    ```
     Затем запуститься celery таска, которое имитирует задержку на сервере и отправку СМС
     
     СМС код приходит в ответе на запрос, БЕЗ ЗАДЕРЖКИ(в тестовых целях).
-2. Подтверждение
+
+
+2. [POST] Подтверждение SMS кода
+    ```bash
+    https://metrograddiplomtodd.ru/api/referral/sms-code/
+    ```
+    * Request body:
+    ```json
+    {
+      "code": 8164
+    }
+    ```
+   * Response:
+   ```json
+    
+   ```
+
+
 <br>
 
 ## Local Docs
