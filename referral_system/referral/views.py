@@ -64,7 +64,7 @@ class ActivateInviteCodeView(CreateAPIView):
         me.save()
 
         return Response(
-            ReferralUserDetailSerializer(me).data,
+            ReferralUserDetailSerializer(parent).data,
             status=status.HTTP_201_CREATED,
             headers=headers
         )
