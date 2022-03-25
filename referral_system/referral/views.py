@@ -101,7 +101,7 @@ class LoginSendCodeSMSView(CreateAPIView):
     """
     serializer_class = SendSMSCodeSerializer
     queryset = ReferralUser.objects.all()
-    parser_classes = (parsers.MultiPartParser,)
+    parser_classes = (parsers.MultiPartParser, parsers.JSONParser)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
