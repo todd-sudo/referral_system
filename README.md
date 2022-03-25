@@ -14,7 +14,8 @@ License: MIT
 
 
 ### API документация:
-* domain = 
+1. Swagger: https://metrograddiplomtodd.ru/api/docs/
+2. Redoc: https://metrograddiplomtodd.ru/api/redoc/
 
 
 
