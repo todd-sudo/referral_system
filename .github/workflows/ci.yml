@@ -21,7 +21,7 @@ jobs:
             git pull origin master
 #            ./scripts/down_prod.sh
 #            git pull origin master
-#            ./home/todd/referral_system/scripts/build_prod.sh
+#            ./scripts/build_prod.sh
 #            ./scripts/migrate_prod.sh
 #            ./scripts/up_prod.sh
 
@@ -29,19 +29,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: connect_server
     steps:
-#      - name: Checkout Code Repository
-#        uses: actions/checkout@v3
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
 
       - name: Down Containers
-        run: ./home/todd/referral_system/scripts/down_prod.sh
+        run: ./scripts/down_prod.sh
 
       - name: Build Project
-        run: ./home/todd/referral_system/scripts/build_prod.sh
+        run: ./scripts/build_prod.sh
 
       - name: Migration
-        run: ./home/todd/referral_system/scripts/migrate_prod.sh
+        run: ./scripts/migrate_prod.sh
 
       - name: Start Project
-        run: ./home/todd/referral_system/scripts/up_prod.sh
+        run: ./scripts/up_prod.sh
 
 
