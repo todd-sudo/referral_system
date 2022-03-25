@@ -31,6 +31,7 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           script: |
             cd referral_system/
+            git pull origin master
 #            ./scripts/down_prod.sh
 #            git pull
 #            ./scripts/build_prod.sh
@@ -46,9 +47,6 @@ jobs:
 
       - name: Down Containers
         run: ./scripts/down_prod.sh
-
-      - name: Git pull
-        run: git pull origin master
 
       - name: Build Project
         run: ./scripts/build_prod.sh
