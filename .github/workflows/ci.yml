@@ -48,7 +48,7 @@ jobs:
         run: ./scripts/down_prod.sh
 
       - name: Git pull
-        run: git pull
+        run: git pull origin master
 
       - name: Build Project
         run: ./scripts/build_prod.sh
