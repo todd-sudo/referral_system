@@ -32,22 +32,16 @@ jobs:
 #      - name: Checkout Code Repository
 #        uses: actions/checkout@v3
 
-      - name: PWD
-        run: pwd
+      - name: Down Containers
+        run: ./home/todd/referral_system/scripts/down_prod.sh
 
-      - name: LS
-        run: ls -la
+      - name: Build Project
+        run: ./home/todd/referral_system/scripts/build_prod.sh
 
-#      - name: Down Containers
-#        run: ./scripts/down_prod.sh
+      - name: Migration
+        run: ./home/todd/referral_system/scripts/migrate_prod.sh
 
-#      - name: Build Project
-#        run: ./scripts/build_prod.sh
-
-#      - name: Migration
-#        run: ./scripts/migrate_prod.sh
-
-#      - name: Start Project
-#        run: ./scripts/up_prod.sh
+      - name: Start Project
+        run: ./home/todd/referral_system/scripts/up_prod.sh
 
 
