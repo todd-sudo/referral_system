@@ -96,7 +96,7 @@ class ProfileView(RetrieveAPIView):
         )
 
 
-class SendCodeSMSView(CreateAPIView):
+class LoginSendCodeSMSView(CreateAPIView):
     """ Авторизация пользователя
     """
     serializer_class = SendSMSCodeSerializer
