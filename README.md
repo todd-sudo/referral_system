@@ -1,4 +1,4 @@
-# referral_system
+# Simple Referral System
 
 Тестовое задание Hammer Systems - Простая реферальная система 
 
@@ -13,9 +13,20 @@ License: MIT
 6. CI/CD
 
 
+## Production Docs
 ### API документация:
 1. Swagger: https://metrograddiplomtodd.ru/api/docs/
 2. Redoc: https://metrograddiplomtodd.ru/api/redoc/
+
+#### Endpoints:
+1. 
+
+<br>
+
+## Local Docs
+### API документация:
+1. Swagger: http://127.0.0.1:8000/api/docs/
+2. Redoc: http://127.0.0.1:8000/api/redoc/
 
 
 
