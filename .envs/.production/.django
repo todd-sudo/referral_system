@@ -4,7 +4,7 @@
 DJANGO_SETTINGS_MODULE=config.settings.production
 DJANGO_SECRET_KEY=VmDc5CE5sTHSn5SMSYtYbJUmVeSR6CWuNFJJQqGRIEfhwNpHluJtSM4qMJAlYXUQ
 DJANGO_ADMIN_URL=PZ5O9holIs2XExIedZ7IocaL2g0kDCds/
-DJANGO_ALLOWED_HOSTS=.example.com
+DJANGO_ALLOWED_HOSTS=.metrograddiplomtodd.ru
 
 # Security
 # ------------------------------------------------------------------------------
