@@ -16,32 +16,36 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
-          script: |
-            cd referral_system/
-            git pull origin master
-            ./scripts/down_prod.sh
-            git pull origin master
-            ./scripts/build_prod.sh
-            ./scripts/migrate_prod.sh
-            ./scripts/up_prod.sh
+#          script: |
+#            cd referral_system/
+#            git pull origin master
+#            ./scripts/down_prod.sh
+#            git pull origin master
+#            ./scripts/build_prod.sh
+#            ./scripts/migrate_prod.sh
+#            ./scripts/up_prod.sh
 
-#  deploy:
-#    runs-on: ubuntu-latest
-#    needs: connect_server
-#    steps:
-#      - name: Checkout Code Repository
-#        uses: actions/checkout@v3
-#
-#      - name: Down Containers
-#        run: ./scripts/down_prod.sh
-#
-#      - name: Build Project
-#        run: ./scripts/build_prod.sh
-#
-#      - name: Migration
-#        run: ./scripts/migrate_prod.sh
-#
-#      - name: Start Project
-#        run: ./scripts/up_prod.sh
+  deploy:
+    runs-on: ubuntu-latest
+    needs: connect_server
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Down Containers
+        run: |
+          ./scripts/down_prod.sh
+
+      - name: Build Project
+        run: |
+          ./scripts/build_prod.sh
+
+      - name: Migration
+        run: |
+          ./scripts/migrate_prod.sh
+
+      - name: Start Project
+        run: |
+          ./scripts/up_prod.sh
 
 
