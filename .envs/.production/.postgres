@@ -1,7 +1,0 @@
-# PostgreSQL
-# ------------------------------------------------------------------------------
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=referral_system
-POSTGRES_USER=AmzCtVOFVOSEEVrAnmaaRglFhiCGFkyq
-POSTGRES_PASSWORD=N5ZI3R6hXlEL07fgZmtWwgZZmGheMFpIVgPBAWF4AYI9sONi3tQBYzQtkG1eexnw
